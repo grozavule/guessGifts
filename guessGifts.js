@@ -24,6 +24,18 @@ const guessGifts = (wishlist, presents) => {
     return matches;
 }
 
+const guessGifts2 = (wishlist, presents) => {
+    return wishlist.filter(wish => {
+        return presents.some(present => {
+            return Object.keys(present).every(key => {
+                return wish[key] === present[key];
+            });
+        });
+    }).map(wish => {
+        return wish.name;
+    });
+}
+
 var wishlist = [
     {name: "Mini Puzzle", size: "small", clatters: "yes", weight: "light"},
     {name: "Toy Car", size: "medium", clatters: "a bit", weight: "medium"},
@@ -37,4 +49,4 @@ var presents = [
     {size:"large", clatters:"yes", weight:"heavy"}
 ];
 
-console.log(guessGifts(wishlist, presents)); // must return ["Toy Car", "Mini Puzzle"]
+console.log(guessGifts2(wishlist, presents)); // must return ["Toy Car", "Mini Puzzle"]
